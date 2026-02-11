@@ -6,7 +6,7 @@ iPhone 14 Pro Max (A16 Bionic) - Additional Platform Confirmation
 DEVICE:          iPhone 14 Pro Max
 COMPONENT:       TI SN27xxx Fuel Gauge
 LOG DATE:        2026-01-18 14:17 UTC
-CASE REF:        iPhone 15 Pro Max CWE-1274 (open)
+CASE REF:        iPhone 15 Pro Max CWE-1191 (open)
 
 PACKAGE:
   • CWE-1191_EVIDENCE_REPORT.txt (this file)
