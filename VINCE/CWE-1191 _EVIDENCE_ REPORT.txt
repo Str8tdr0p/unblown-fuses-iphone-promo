@@ -1,0 +1,74 @@
+================================================================================
+CWE-1191 FOLLOW-ON EVIDENCE
+iPhone 14 Pro Max (A16 Bionic) - Additional Platform Confirmation
+================================================================================
+
+DEVICE:          iPhone 14 Pro Max
+COMPONENT:       TI SN27xxx Fuel Gauge
+LOG DATE:        2026-01-18 14:17 UTC
+CASE REF:        iPhone 15 Pro Max CWE-1274 (open)
+
+PACKAGE:
+  • CWE-1191_EVIDENCE_REPORT.txt (this file)
+  • powerlog_2026-01-18_14-17_ADE45F6B.PLSQL
+  • log_2026-01-18_14-17_1CD45F2D.BGSQL
+  • cwe1191_triage.py (verification script)
+  • TRIAGE_REFERENCE.txt
+
+================================================================================
+FINDINGS
+================================================================================
+
+[1] SECURITY FUSE STATE
+────────────────────────────────────────────────────────────────────────────────
+Register (Flags): 0x2081
+Binary:           0b0010000010000001
+
+Bit 4: 0 (UNFUSED) ← VIOLATION
+Bit 5: 0 (UNFUSED) ← VIOLATION
+Bit 6: 0 (UNFUSED) ← VIOLATION
+
+Expected: All bits = 1 (production state)
+Result:   CWE-1274 confirmed on A16 platform
+
+────────────────────────────────────────────────────────────────────────────────
+
+[2] ANOMALOUS EXECUTION
+────────────────────────────────────────────────────────────────────────────────
+756 SLEEP state events with battery subsystem activity
+Sample timestamps:
+  2026-01-16 05:04:05.898 UTC
+  2026-01-16 05:10:05.901 UTC
+  2026-01-16 05:16:05.898 UTC
+  [Pattern continues at ~6min intervals]
+
+────────────────────────────────────────────────────────────────────────────────
+
+[3] CAPACITY MANIPULATION
+────────────────────────────────────────────────────────────────────────────────
+Event 1: 2026-01-18 08:03:59 UTC | 3892→3864 mAh (-28)
+Event 2: 2026-01-18 17:05:12 UTC | 3772→3745 mAh (-27)
+
+Drops match documented ~32mAh manipulation signature
+
+────────────────────────────────────────────────────────────────────────────────
+
+[4] PROCESS CORRELATION
+────────────────────────────────────────────────────────────────────────────────
+No iOS processes triggered within 100ms of events
+→ Direct hardware access, bypasses software layer
+
+================================================================================
+VERIFICATION
+================================================================================
+python3 cwe1191_triage.py powerlog_2026-01-18_14-17_ADE45F6B.PLSQL \
+                          log_2026-01-18_14-17_1CD45F2D.BGSQL
+
+================================================================================
+ASSESSMENT
+================================================================================
+iPhone 14 Pro Max exhibits identical CWE-1191 vulnerability as iPhone 15 Pro Max.
+Unfused security bits confirm systemic issue across A16 platform. Hardware-level
+failure requiring supply chain intervention.
+
+Cross-platform vulnerability confirmed: A16 (iPhone 14 Pro Max) 
