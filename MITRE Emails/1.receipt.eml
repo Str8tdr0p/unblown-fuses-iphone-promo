@@ -1,0 +1,144 @@
+Return-Path: <prvs=3490cbbbac=cve-request@mitre.org>
+X-Original-To: fr0mthecloud@proton.me
+Delivered-To: fr0mTheCloud@proton.me
+Authentication-Results: mail.protonmail.ch; dkim=pass (Good 2048 bit
+    rsa-sha256 signature) header.d=mitre.org header.a=rsa-sha256
+Authentication-Results: mail.protonmail.ch; dmarc=pass (p=none dis=none)
+ header.from=mitre.org
+Authentication-Results: mail.protonmail.ch; spf=pass smtp.mailfrom=mitre.org
+Authentication-Results: mail.protonmail.ch; arc=pass smtp.remote-ip=67.231.147.183
+ arc.chain=:microsoft.com
+Authentication-Results: mail.protonmail.ch; dkim=pass (2048-bit key) header.d=mitre.org
+ header.i=@mitre.org header.b="Yca8VRUn"
+Received: from mx0e-00007b01.gpphosted.com (mx0e-00007b01.gpphosted.com [67.231.147.183])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits)) (No client
+ certificate requested) by mailin037.protonmail.ch (Postfix) with ESMTPS id
+ 4f2mCM44Ygz9vNPm for <fr0mthecloud@proton.me>; Fri, 30 Jan 2026 19:23:59 +0000 (UTC)
+Received: from pps.filterd (m0326551.ppops.net [127.0.0.1]) by
+ mx0f-00007b01.gpphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 60UG22la028486 for
+ <fr0mthecloud@proton.me>; Fri, 30 Jan 2026 19:23:57 GMT
+Received: from smtpyrhmv1.mitre.org ([192.52.194.175]) by mx0f-00007b01.gpphosted.com
+ (PPS) with ESMTPS id 4c0ytd8quk-1 (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384
+ bits=256 verify=NOT) for <fr0mthecloud@proton.me>; Fri, 30 Jan 2026 19:23:57 +0000
+Received: from smtpxrhmv1.mitre.org (smtpxrhmv1.mitre.org [192.52.194.155]) (using
+ TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+  key-exchange X25519 server-signature RSA-PSS (4096 bits)) (No client certificate
+ requested) by smtpyrhmv1.mitre.org (Postfix) with ESMTPS id 25AFE413DC7 for
+ <fr0mthecloud@proton.me>; Fri, 30 Jan 2026 14:23:57 -0500 (EST)
+Received: from BN8PR09CU001.outbound.protection.outlook.com
+ (mail-eastus2azlp17012054.outbound.protection.outlook.com [40.93.12.54]) (using TLSv1.3
+ with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+  key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested) by smtpxrhmv1.mitre.org (Postfix) with ESMTPS id
+ 10FEC413DC9 for <fr0mthecloud@proton.me>; Fri, 30 Jan 2026 14:23:57 -0500 (EST)
+Received: from BLAPR09MB6788.namprd09.prod.outlook.com (2603:10b6:208:2ae::21) by
+ SA0PR09MB6556.namprd09.prod.outlook.com (2603:10b6:806:7a::14) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9564.12;
+ Fri, 30 Jan 2026 19:23:55 +0000
+Received: from BLAPR09MB6788.namprd09.prod.outlook.com ([fe80::bff3:6dd0:2ca3:3b4f]) by
+ BLAPR09MB6788.namprd09.prod.outlook.com ([fe80::bff3:6dd0:2ca3:3b4f%3]) with mapi id
+ 15.20.9564.010; Fri, 30 Jan 2026 19:23:55 +0000
+Dkim-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mitre.org; h=from : to : subject
+ : date : message-id : content-type : content-transfer-encoding : mime-version; s=pps1;
+ bh=hgN2+qOcY3iD7bRk0tYbmiLifIVThFTTNqrCWP6tY1U=;
+ b=Yca8VRUnNXRCaoBMcziyBfg9ElPG2erLuyD5OzcvoDCHAEV3cTSDSyM2k01fH3AbMKjk
+ 8y08bg7YL3rMi9Nixym1ZqhPYNDudn4NiG6eIdTYWbqlfX/ci5DvJyiNG4Ao0DK5zfXL
+ qoMsFqBzWel2shFkSMu1pzLr+IpLHthkEfSVpjG6E0c5bIUZ5a9+tD3Ek4royzkL+RQV
+ 0BfA1FlKU3EhSu8J8AEJd+8SvDJRLUTHUPUnnGZlX901Kc/sbHvpc1pKp8HvOPEN3ebT
+ m8Oj8umL/p64vagLpLorhzo8d4ZJsDe8xjkZR9Lsb0sFL0KgMLo/G17VAxGneGyuhg3A OQ==
+Arc-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=od+RKyckfLU45DcQwhl4FrRyczJVQ5Bmd5ajcC+5AIafquJGPH17M1V92gOzycSysApYcP6OWJwNBIourgxv4VBMdfxLdMFEHoTNfyW0cGaKTlCdq6MEp21SCC3KcojZXl2hIxrxAdH7sXomqIYm6NiBz/tPWQQMcyn1ZE5Bkkuoiv+p04XiBeNz3uzuxoDiOGjYInsXODNbxvpVo5zblFhtn9CQYCXjGiIixcUq4m6PNMc5foJ1XwBpzvbOrcOGnANvsEDVtPxO8I75zlw+PfSkxij1lcoH09Hy1ck+9LkS+B+nrCPb3XmfoVkNGZf2t62gztHKxfgDY7uqT+EQtg==
+Arc-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=hgN2+qOcY3iD7bRk0tYbmiLifIVThFTTNqrCWP6tY1U=;
+ b=AvhWF/1wn0UHDOrQnwYDGQKKnV9zGmfCRnpJC/k/FQ/hkguHWmi+x72ewBn9B9OsLkevmQlH3yYD9kzHPcReRPJygB5fvEoExVfXpDlGaZ7xyS0RPqSSL+RnpzWLOytuPV5AiGHlpIQ/d7FUdacNxuEUT8mv1Vtb7hD4rQW0XbrctSBfSQqpjOL/ofU9xXEWK1VsVGMN3rHp0LGllpf0L3ua05hAHs+iXonDVo/zYAF60XXDes6xfO4NZGXshaatXN9qcyvsRYxVFLVlXq96e1couRdgipWq12CsTBvIfrJsOcaA5GFAQFrJBa3b8mlx0DOihvMAZtYCFWJgVcoIsQ==
+Arc-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass smtp.mailfrom=mitre.org;
+ dmarc=pass action=none header.from=mitre.org; dkim=pass header.d=mitre.org; arc=none
+From: CVE Request <CVE-Request@mitre.org>
+To: "fr0mthecloud@proton.me" <fr0mthecloud@proton.me>
+Subject: CVE Request 1985899 for CVE ID Request
+Thread-Topic: CVE Request 1985899 for CVE ID Request
+Thread-Index: AQHckh35jegBKOeUTEupCx63SEkJ1g==
+Date: Fri, 30 Jan 2026 19:23:55 +0000
+Message-Id: <BLAPR09MB6788276315DFB162F38014B6E59FA@BLAPR09MB6788.namprd09.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-Ms-Publictraffictype: Email
+X-Ms-Traffictypediagnostic: BLAPR09MB6788:EE_|SA0PR09MB6556:EE_
+X-Ms-Office365-Filtering-Correlation-Id: ee0ee35e-4535-46c0-79f2-08de60351c3a
+X-Ms-Exchange-Senderadcheck: 1
+X-Ms-Exchange-Antispam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|38070700021;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?Eez/316xmroKgwo3iZcySXmTiYcW+/zAZjhGIx0UE+O6ADdT18oVY5boYVZbfqULlblbmFDHSWQbLoBEKlU3beYIYlopi59RlRmnzT6mhd+lt2CfOaJ3wL9CQy5GqRr1DuJcUt5fGsfsjuNCDBPRUrMA8pA2OELR+KWZWXf+urOSF4eCU5LMn7VEdRIbJL+1b8zMK3US7bqHgVWLc4x7Jw/YvW6M7LrzCDZvsXEy18aPwiopDSHXBdDrNVJSfmbVZjq0pQx/81OeEMQcVzUWRzB8tVmEsdbSY2v1TbzKhuqwysomZP0XlT+sHYaFJmb+9cGkGnTC15zf1b2Uwi2HaaqPDCneeNsoer1+R3OfGbAkgW62bBo+eDICE7+QGde21E8Lw/zVfpRUl7VvqZk5z8BsPgvOMoCdaKaX7+ZyMbBNkx6oCVVnQ3KjZQohealOULUn4pxiOKHn9jj2P8hBO2PYahPSz/SfEfyjNBCaJixDK2qDrQOlCYac9Jd8wS0FuqLE1UUaeEx3IcfZ9xmHA4tEsKVYW9v3JZ9tUeNjkmtM/iyTpTAVtHsfSQ7xhBup5LRU9+Y+37Edk6DWHzXpp8qzVvLgVmZUOvVBVd3Zv/5JrIabP7j38NkVeyQ2fPzUySAWD+RrLrh8LhpL6HSiV2Ti7NZrf8sfzhvoR8T5FGdkPG3wQIiHIfTlBb6pCzhnq95TTn+JNae2LwrwZEucBxX4A8yAKYk9HzwKAE+tpTL6lRh9auMsQrPFEKgVFj9jb0sGKE4by9dhMBlz3W6o2QKUX1P+HCLWGjOXCpKwzjk0KbWUmTbHEUMSjgglL0MdRWKt/nUaZcYY/ZiDqduD/twnQYjVLJz+3ZCQ/9ozhEEU4PDylYuiGL3vNbj+4n0dMjvoh4QuQMO/Avm6+NyAxtZmT2ntjSb58jLYfyICvVVxq1ANEwEVxHudrz5rfoNEpzPGCa6VDFkHvUDVigFBIq?=
+ =?us-ascii?Q?M7ID8dNPeTtf7JY1d6ghXNYHlhLlpSMjNT62c2iuvPPW1GlNVJmMeYzvajmSAqdXqO3ksOpCVRplzjMFEbZaD9vFF0IM80Q7PRrzMYOXK5nTcaAEXvy8FGC5m/BsczzLLMHQLuvU2Tx1qgg9K8Z0I1dtrVawO12CbjSrbtr/oo5GzMRm29MFHv7dvcNPELDDTXxl5dz7X4Z6tVnAPdaXjsytD4KOgmlGV8NOmzhtqxz9LWm+D42wUXECZtawV8cqzJVfaJNRg3xrH15Ool0omCxDMWNbWHljfPi6j6UdXrE5QmnRODbsMMEEQ1waBjpDSSrCXkmj1iiQRTWSvEAhNYZjaIdUs5XAX4/ZCGUJKaybo0pdueULAw9oJdMRtp1MRDhmVDrqbGty5ZPZxfmG4sWDFnXwH62aV7iK90mY/kSyXffz0ntvGueZlVet7hRDKJEfmtaBA+RszzbldGprzZAYqHNgUbBVM8uFbXlE1Uaq0oJhScaoSNVu6d3A4TS6GsgENhh/qjLhQ/dRzSz3x0JFgiErTT/aDY2T9jhna/eMO8qNxjKBWkEtaUg96tYS9CGVhSpFUEIiz5I7HIzZ+2WLTnSvXiomOluzhQqtgQ9h9j1Y9TRJkTJxFnDNuZUrmkJ1qfgwMIf0nvKAMTe8s=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BLAPR09MB6788.namprd09.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(38070700021);DIR:OUT;SFP:1101;
+X-Ms-Exchange-Antispam-Messagedata-Chunkcount: 1
+X-Ms-Exchange-Antispam-Messagedata-0: =?us-ascii?Q?P7T/k8LvtpYCzUahNuntuL9Hmun6aGfxB9q4YGJvbbY5vLnxVfgwblKPlRdtCf3bOI3T6fFpSRWR15YraQMh+GewzFXnFJiwZ27V4noOP5Eekosd7M7ei94iKiy+ZZuAv61dwCGfXZkjX6IZdLQX2pYLCnSqjBDPL28YhKpmX+NbT8Lp3WFYliiGviE6F2EINncGK17gqEIRfeAh0gXgOF2epdvTccbUHEvFOr0cF/yebhkIUgVXPDOJ7hFj4Lmq1Hen+PbW+0craAjpGVjF10VrjFNRqMKANvMo0SKsCcV9i74SMTeHsxIYos209AOdWLTLGbeC4qZnex8krtXeisVBP95QwwavNQBUIhPstzPYnvunLO6Hp8Cn5AaFNwZjnRsjtv/Ih5o0e+G44QZAw71lKd+q2qgb2fVaSpYqWfommVwmoKDsxT9KHLNvBVEHChTiAB3Be2QuAwfOH9ccWznO3CJfNLb7aiBGBM9PnYxgG6VdZQ9gBENjatySEl6RgBIMVe1b6nUSnRN/0a6UZ10viJ/4UqMIkbqjC9oC/8Sii0JqaexyrNGVkcMA7VF7Bdd31vMQc8RGdQ204TM2iBlam0kOh7NlC9a0hd81BKCBaKDbd7lRQyLnfmkx2/vtp8nbJE3s8EbZTZ5AtWeV7OuKkhOkgHtOYrDVietmhLN7LTMtakL8MIADOlczJjG/SPzVLWkMQKfhzM/ybS/2Oy+0tyAvEKkIt9oXKayzXbzl3FQgE6u8/Uxkk8sASHqFb73AVOcF2reCZmMUTTaRSaiQ8iEbeqg9SMOGZZQo1dRU2zl1N8gkCEUHXYIrc4iTndBf+RL0irMImzsoQFFZGFbF3f6kFVlO5Ce6BbX2I0ywtMqrBf7dKvsRRHv4RVzG8sVNgwuAWOWJXFGIFasxjaCKH4Xfi4bEsCSi5V8mGewp/Bw6hiJEs+SbYAPUBZ9FVFtD544BkPLhg32nBwAHja?=
+ =?us-ascii?Q?tQGEI9vG9rY6MUHxbu7M+AjHD7jp7hrDLp9RiLGKIJnOKiorJPfF+gry3kQO7XjrT5nGNDG5mMZwv+U6XHnPj8jgEIP0RMlWawY8DJ4j5pb9Ax6CLATUMCq+FhfeOhRcxsfo0V1/Om0duxMdP294at59IxM0WuuJodCv6iL7MhUu6dncQqp49oC2gl7MafR2l89bDAlDEHGHw9qfT2yeQGzCs39/pzFsSghd+VoQU8GU0L0nr0ymN78X04ktatZ5hdDQMyOF66fYuTZ8vPn1QFHHjmPs6QFSZVrLWI6ZEyrLJJLXK/RG3nsdzRgzhGqVLR+KDkoTupPyPs9PRp1neWOYO/HSAVbT4LapWqwoP3Cdvg1MeoDY5eL63bL1zgMukXBuNj8cq8aj+ev8vTyMHCz29y14sDyF3CB+9r6Gl7U4ivTtnxF9agVyGgp0jajT1r8FOGXp5GBCy7ZAYZLSEMJxFRqPTvX1NkdSJnCUSIbcwRvPAqzTLjEYzqSmQpCVUnRBjbULItixdq24o6tY0HaTD9vRQ2geBf85JW3RShjjF+EhAMp6biAcsMsDhsTQG1piG8v68ZOUCnmRAMpLvuJU+WssEcXfjgzZhCljKnUPPdWX3EOq85LZplMtzuH5k/072b7hDbtrotV+CwK/uczxCRQ1wegzUZNpnlS0Bdr/fbbI8dzWgRCuQEidMEJV7+g8yy5YmL3UvU7tU4+B5t8V6X9OkQXE2i2sERxd+0utRMyYy+bgarmeaKUm1Mt1t93TRZyIX9An3Ro3VKMkU=3D?=
+Content-Type: multipart/mixed;boundary=---------------------280ba498e4abc2e4abab5ff5a005a84b
+Content-Transfer-Encoding: quoted-printable
+Mime-Version: 1.0
+X-Ms-Exchange-Antispam-Externalhop-Messagedata-Chunkcount: 1
+X-Ms-Exchange-Antispam-Externalhop-Messagedata-0: /U7ZvtEnP25l1ZWRUHcpGFphH2Gcw+kDdSVlvM4QksgTwLaMjvyk3YC23edaQ/yWJTqt37Ed7eu0lfWKeV6Q5suF8xLs/OYFCEZ00UvfEkJ5kD/PuzWCoMoAJuZIqJ38KOfb3Ez/Q7MRTw3aHNT5lICPDZF+GgZ14W/zzRlFen8YddP/c2xHmNi64qTlbA4CHai/UXa0HtTYAnZv9DPYD83/iyIkP8h4QWK+pV0JOIKDfGVVINcostnJTzaoMF518NvC8gYUzljzzUoSNtxIEozWW33b+iDLMXUu5WrL7K29MJk4iHS99kdXF9h3IAO5NnGLH9e61SqgvzYsMYE/Tf+0oysQZ9we8c6xXtKyZ/ppZo29z7kE3k246V/FIIVpTW+XR6izzPE+1IOgpDnjzKpyhnjLT6HAs1T94GUb7jJEB2fzeMbaXbg/hZemYd7fWxXesL08X46YrPNq8W1HL1qv0ofzM4MxevqTLfIX2kZE+SfObiVJfu9EUgHYk+wkUwW49A2m+DdXBkqgdhlhBuIpfGiLOIDVWFKfMrDWNJ4NbbsC7Fp2eBT6hIzhgQXMeD/ltGxIoWvo714sqwj+N62CV5lTQ6UcxFOvJDYk7L70FVtrMhA2Cwj1bCQ4UXBiI4T5o8O/pdNcIoPQQ856Cg==
+X-Originatororg: mitre.org
+X-Ms-Exchange-Crosstenant-Authas: Internal
+X-Ms-Exchange-Crosstenant-Authsource: BLAPR09MB6788.namprd09.prod.outlook.com
+X-Ms-Exchange-Crosstenant-Network-Message-Id: ee0ee35e-4535-46c0-79f2-08de60351c3a
+X-Ms-Exchange-Crosstenant-Originalarrivaltime: 30 Jan 2026 19:23:55.4111 (UTC)
+X-Ms-Exchange-Crosstenant-Fromentityheader: Hosted
+X-Ms-Exchange-Crosstenant-Id: c620dc48-1d50-4952-8b39-df4d54d74d82
+X-Ms-Exchange-Transport-Crosstenantheadersstamped: SA0PR09MB6556
+X-Proofpoint-Virus-Version: vendor=nai engine=6800 definitions=11687 signatures=596818
+X-Pm-Spam: 0yezJI6cihyJeYR3pi42biOpJJvbmsCIeI1msjN3X3blJp7IjSlBITQ0iz0iOCMiwJPU
+ FQF9RUVkEUNUSUSO9owIjSCJLUIy6sUTLlIk9J1ZWp19ZbZmv7pjIlISBQiT0insOa1WhfV2ZmbtFI
+ 6ZSzmhIdFGjm91aWal5R1X3kmVbXB31wIzXjMwYA5MTiiwIbFWpz8FbHcfJ9kbWiWwZOJitslWY3My
+ B0yLS2DIMMEDww5iNCdsI1hImfWxaMB3yyB3X2biIAuOj0DAMNQj1wADMjMxEk0ODyTENLJCtslWYG
+ d4V9ldFlWJbZRGpfdmbWbk9wiZWpiJObRnmh9GbCdt9x0dWpWxabdm1twWYTZtU1hc2iGwbLJCwwN3
+ XWYi0AuOj5DEMMgj55EDOTNzIkyNjsTMMIBnfhB3cVbi9NlYXwjoILAjx4ITOTOxgUyOT5zYMMEjzw
+ JCL3X3NRjaX0F9ab91wzlGaGaulI6ZywC4MMIjz4EDNDO1YUyMz5DYOMMDs1JnIlbu91lYWijoIYxW
+ slZWLXY1RVzcm1XBLXN33jRXaCa9J0sfXynNIaQWi2IiOTOkdU1MDlTZMNED5mZzNjZhZM4NDi2MYf X0=
+X-Pm-Origin: external
+X-Pm-Transfer-Encryption: TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits)
+X-Pm-Content-Encryption: on-delivery
+X-Pm-Spamscore: 0
+X-Pm-Spam-Action: inbox
+
+-----------------------280ba498e4abc2e4abab5ff5a005a84b
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;charset=utf-8
+
+Thank you for the following submission. It will be reviewed by a CVE Assig=
+nment Team member.
+
+Vulnerability Type: Other or Unknown
+
+Suggested description of the vulnerability:
+A hardware-level security violation exists in the Texas Instruments SN27xx=
+x Series Battery Fuel Gauge IC (integrated into the Apple iPhone 14 & 15 P=
+ro Max). The One-Time Programmable (OTP) security fuses designed to perman=
+ently disable manufacturing/debug interfaces remain unprogrammed (unblown)=
+ in production hardware. This "Unrestricted Factory Mode" state permits pe=
+rsistent JTAG/debug access, unauthorized I2C/SMBus bus master elevation, a=
+nd the execution of undocumented factory test commands via the Secure Proc=
+essing Unit (SPU). The exploit allows for the mounting of a reserved memor=
+y partition, masked via manipulation of the battery capacity reporting, an=
+d operates on the Always-On (AON) power domain, persisting across OS updat=
+es and factory resets.
+
+
+Changes, additions, or updates to your request can be sent to the CVE Team=
+ by replying directly to this email.
+Please do not change the subject line, which allows us to effectively trac=
+k your request.
+
+CVE Assignment Team
+
+M/S M300, 202 Burlington Road, Bedford, MA 01730 USA
+
+[A PGP key is available for encrypted communications at
+
+http://cve.mitre.org/cve/request_id.html]
+
+{CMI: MCID15612789}
+-----------------------280ba498e4abc2e4abab5ff5a005a84b--
