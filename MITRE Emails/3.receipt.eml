@@ -1,0 +1,127 @@
+Return-Path: <prvs=3496cefb8c=cve-request@mitre.org>
+X-Original-To: fr0mthecloud@proton.me
+Delivered-To: fr0mTheCloud@proton.me
+Authentication-Results: mail.protonmail.ch; dkim=pass (Good 2048 bit
+    rsa-sha256 signature) header.d=mitre.org header.a=rsa-sha256
+Authentication-Results: mail.protonmail.ch; dmarc=pass (p=none dis=none)
+ header.from=mitre.org
+Authentication-Results: mail.protonmail.ch; spf=pass smtp.mailfrom=mitre.org
+Authentication-Results: mail.protonmail.ch; arc=pass smtp.remote-ip=67.231.147.183
+ arc.chain=:microsoft.com
+Authentication-Results: mail.protonmail.ch; dkim=pass (2048-bit key) header.d=mitre.org
+ header.i=@mitre.org header.b="l7bPOSc6"
+Received: from mx0e-00007b01.gpphosted.com (mx0e-00007b01.gpphosted.com [67.231.147.183])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits)) (No client
+ certificate requested) by mailin053.protonmail.ch (Postfix) with ESMTPS id 4f6QG937Vhz4J
+ for <fr0mthecloud@proton.me>; Thu,
+  5 Feb 2026 18:09:05 +0000 (UTC)
+Received: from pps.filterd (m0326551.ppops.net [127.0.0.1]) by
+ mx0f-00007b01.gpphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 615DLZct008381 for
+ <fr0mthecloud@proton.me>; Thu, 5 Feb 2026 18:08:58 GMT
+Received: from smtpyrhmv1.mitre.org ([192.52.194.175]) by mx0f-00007b01.gpphosted.com
+ (PPS) with ESMTPS id 4c4v1593m2-1 (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384
+ bits=256 verify=NOT) for <fr0mthecloud@proton.me>; Thu, 05 Feb 2026 18:08:58 +0000
+Received: from smtpxrhmv1.mitre.org (smtpxrhmv1.mitre.org [192.52.194.155]) (using
+ TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+  key-exchange X25519 server-signature RSA-PSS (4096 bits)) (No client certificate
+ requested) by smtpyrhmv1.mitre.org (Postfix) with ESMTPS id C6A36413DC9 for
+ <fr0mthecloud@proton.me>; Thu,
+  5 Feb 2026 13:08:57 -0500 (EST)
+Received: from CH1PR09CU001.outbound.protection.outlook.com
+ (mail-northcentralusazlp17011026.outbound.protection.outlook.com [40.93.20.26]) (using
+ TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+  key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested) by smtpxrhmv1.mitre.org (Postfix) with ESMTPS id
+ B05A5413DC7 for <fr0mthecloud@proton.me>; Thu,
+  5 Feb 2026 13:08:57 -0500 (EST)
+Received: from BLAPR09MB6788.namprd09.prod.outlook.com (2603:10b6:208:2ae::21) by
+ BLAPR09MB7361.namprd09.prod.outlook.com (2603:10b6:208:289::9) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.15;
+ Thu, 5 Feb 2026 18:08:54 +0000
+Received: from BLAPR09MB6788.namprd09.prod.outlook.com ([fe80::b2fa:3ae8:542a:2874]) by
+ BLAPR09MB6788.namprd09.prod.outlook.com ([fe80::b2fa:3ae8:542a:2874%7]) with mapi id
+ 15.20.9587.013; Thu, 5 Feb 2026 18:08:54 +0000
+Dkim-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mitre.org; h=from : to : subject
+ : date : message-id : content-type : content-transfer-encoding : mime-version; s=pps1;
+ bh=ie1j+eWa27HKpdBZJTj+mUMVvHnNMG/r9GLz6er3SeQ=;
+ b=l7bPOSc62gzBENxNwFqezbUkqO9lsO9Trgtmy2eW/E8ryQgr5YX4ZG7ey7MlYbAyqL3j
+ eQkr8p2YrAkv/XBd7U3Z43rNxVBRhDrstj7CsdFOk5IYsszi0OPAnto+F9878K/p30lC
+ REPzWLR98B/WB22jvg5U76VCx9VWkY6VacbeM7kXygNTK2UngP9AryLxeNnk+Crwjh0Y
+ Q1uah4L2uZpDwy6oRrftUBB+lMUvmytxopQYCekdGUqttv3fnhdr5mlRS7pwbf87iXPI
+ uJiDRPltA8+kQ+L+7TiExxcx1lb+aEpdwy/aSrhxYykPmiqdPe3FVyorsIcgZ+4wYNkV XQ==
+Arc-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=P5B+agTPZVPtuKmVGH2rdawYnXVkLZ7PPbD8Ot+1J/eKZrv7b31VoOwDWbKikcPXZFnpN+rrCiGf4RA2eVx0qcQ/tAuyGyIKMrZtz5C8Yjla0VZ6h25KNqz54zF9hWZ6/c9SbZKItn1dnFUfxISi22Arz30OfRirNCYUoLqcRD41y46tOoP3zXAHdHGmYTwue3xzSpPGqxiO/fgRACwgMgOXXn450ihOSAxYsJIl2lTrxslLvr0CvQl40FSbsIp2FpN6aUeqHAYLu6cCLhriFy+ytOl8qLvcRzrDp4W+gWrVdiQhCVEObQQbM/HxI33XEHgtnxSdCC2h6OmCDpkRgw==
+Arc-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ie1j+eWa27HKpdBZJTj+mUMVvHnNMG/r9GLz6er3SeQ=;
+ b=F21tbtV/TM4Y0QpKyMJpeY7LO0U2GSy6aGG7OfNW8dvgNWCeVnrYFXqXramqhoZ9rzWHcatKd54rqPNfeRy5LzkfzVLy9yLuwZmWc/wRVAI64wWUXkWWM34o/gZcN9viH9Sw4vSsAak0hmHq7k7MJ3AVrRKjet+3hnDfWPKegxzsRpNkkuOKKHcEREBdGxbveiW1X9ndH4BpQceMznUqW/JRMdM+Rs+ZS86FphtKAvwzqJm17k+q0T7pjbHRjZrecX4Wef16DkcBtR/+7pk66kCzluXtmcS4RwIoRl0sSYHnFUdwba6WDdVWPSYdWTtDbPDxsNqrWOGDAih8gH39tQ==
+Arc-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass smtp.mailfrom=mitre.org;
+ dmarc=pass action=none header.from=mitre.org; dkim=pass header.d=mitre.org; arc=none
+From: CVE Request <CVE-Request@mitre.org>
+To: "fr0mthecloud@proton.me" <fr0mthecloud@proton.me>
+Subject: CVE Request 1988922 for Publication Request
+Thread-Topic: CVE Request 1988922 for Publication Request
+Thread-Index: AQHclsp83decbmdSOUS5xGdOwsFn+A==
+Date: Thu, 05 Feb 2026 18:08:53 +0000
+Message-Id: <BLAPR09MB67882728CA62E1A385B99BF9E599A@BLAPR09MB6788.namprd09.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-Ms-Publictraffictype: Email
+X-Ms-Traffictypediagnostic: BLAPR09MB6788:EE_|BLAPR09MB7361:EE_
+X-Ms-Office365-Filtering-Correlation-Id: 66d75f2d-1ff4-4561-fe3a-08de64e19f6b
+X-Ms-Exchange-Senderadcheck: 1
+X-Ms-Exchange-Antispam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|38070700021;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?uwrP6XQeJNC104WpLo2uTiqXApXmxm6GiyeU2D1usWEsz9liCkzSg8BHNgO873sUTnx1P2PZk4v10nCC/XTdCU4oG4VTALb2GiiqsUyR9sUBaTrqy52mzH3EaCwJ8XbncdA9q5vcKiXHmX8nQtVP4Llge/og141wRUPhaXRgO+NhlvVrxOwt30uyAjRsaG5LlIwluEcRFURZKxRa43VyUNOqMonjtyLj3l7VWqCvxt4lJRF0VRR3E5X+iN56bW2dChqgXTwbB0c9WqixR/6O1NdcGTY2DdTb9W5nQfbk1cY0VMf4CP1GUd+Zk6+k/uEc9+Gk6g1HaLdSZ+w/A9fciDCSWXAUu7Wiu4hSE/PbD1TDH2Ol7EFmekqsF0toPfUfhNbdER3p09KYdiv2b0yy94+UohP50CZaMJD4qWYJ8kemPJpdT37RhhcDWxLhN6zIOzFEZ1YtddU8yIEd3wAqm9d1jhvv2/RN3kg4EJC6YSHKHYNX+swLXEynziXwd15m+z1F/Qrj1bFWOiEfBE6bHNwVcMu/UnCquTmbj8M2NdEz+9yMtN1O8ifBFxf7MM6t0oBu6B84UaIYFbn9TwosR4Gzlf8R4u7LtJX5SaKn55eXsp/P4yONgA0RCjV7evUxy29GODypBtGBoJq3eWwdisYolOqy5/6bFUzZarvFaG6aMKf9RJ7CviSpIKiMYnOg2Q1E4ixAX9IahkHYxm6kVJtvrudnWzsQ2jXBYn4um5K1Bp3fhO8KhHuxSMZ5XV29XHCXzKQjp9FYRHcQTKIIcMu5j2vRmf5V5Wa0NI66JXmr4RYv1i1FXZY3xeZJC991HMRTv9MV6vOl9SsQX1KAnP8mO094hUkP9lcoalkswrGo0cl+KvbH3ygPMsTRVJDZroOR+xQR6M2/K0/CmBZlCCU9Wj80b7IwtgB+4BEcdrJFTjpsZYDMQHjQpWl6fe6loGb9sws+5Po+kFIbP4W+6D?=
+ =?us-ascii?Q?rzmfM8uYKqYSBfdtuQipuQ7a5cCm+gvwHdXOwkJiiKIgtGveNtXVOM1wZ1rQBuokTNXBA01cSjzJgfeNgrMYSzhWC6Bh5Sagk5m8n1JvGPUVRR31yyC7N22PfyLnh4RlQE7EOTDz3Q/hCfMwgELLM7FQkgxOLveBe726j9TNrXsGJZHChpWng8gRzE88WI9geWMomHC09s2e20jQ0MGe7tBKcJuAztr3H7beaBzppIORJhclaTfxKF5Zt0mqXwIibwn7LtmZCDSyebrUvb1FwfCFamyUoiXI5+PmoOFNrmuDug5fQdz1r3sE2rgazGIS9GetBSwWGiACyHuiO07d3Jau4kr3Aku1Hayxsa8+mxuMRBqR4RVCaGU3Tzkzq0r0KYdygYdGui4A6qVtJXebDVsaLCOXxvTUB/8RfQTi8a5YU9ukAM0+Yr7GzzRg+04948E5wTuijRfzbOJu69JmYQzzn40RVYJwMqdwPt+lGtHMlPmaralxpqaUWaOOWjHz9I2NVtn4dpOoM8KXZ9UEeIrTeBmfyIqPbLIdGttm6cokhX1PaucuqjQGdtlwMS5PrwxJfTcbGn+v2nIMWkf0cSvw+tEK7LVfXq7nfApmlgFNkWa8B7X+skdYTyGN7NGJ2sLpy/ZloC4eBQx0eHb0c=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BLAPR09MB6788.namprd09.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(38070700021);DIR:OUT;SFP:1101;
+X-Ms-Exchange-Antispam-Messagedata-Chunkcount: 1
+X-Ms-Exchange-Antispam-Messagedata-0: =?us-ascii?Q?yQIHXe+EHc+TqMEIGb+FmJzUFqxfk0DFIFDf6P+huRoK/j6l/LqA+Pwqi67kbzDQEcx9COLwEDtHfTsAiGa9phuH6JgKjf5E6SzcP7Kfua3hxBngZAnvujbIM+NmHVJLcBtUZRPMcNIOSpWash7RQMEno8FY7WeMJdX4iabAfHr5xSi1k+YtyqI3nlOVfTGOw5jdTIzxSGQxgFvtbXhJ1MbF6dsMuuD2i1QLSVp/yXNsMblDRaCm5fSwBf14XxHmnk3Ig6VwSpKhosz+KaPPY+Cj1ozjDaA8skoYBkXXfKVhF4MudDHgd1oPq5rzJYGGUqViPu05nmeUzA3o0sqQlblzaHtewjB+4KZXnE+XNxIDPe7WhHl3iPDVTZHZ1y5jexHQsXeW7mKFwGFRS1YRdSaM/Ha8tDqGMJvsRyg4rGvWspqhd0nElxUyfnKLfA7M5MwQ3hcHgAyQgFGl7uCEllmnIGJ2ez7CwiqoS0MtHifcT5DEM8S+AqHGSK6LXdB1SLV7SJzyCw9SBDioW4LlwAgv8rrjFN/eqIEX/PqyndQuFTJsbKObxDGtRrrUszUS/p1pGWUm1vRHuzezdmUftyqSM2T9g3kRXDTkxoEMaNuxoOx2sq6M4XtkgyGkgkrzd+L5ekbULYvUeqE7IkiSfSBtkOQLTr2BZQDv2eFTKm6ZCl6RgfSc0m21bqISJEJIwnhcx5UUTk133wrAEXVqKPfDfuE7UZSF6RVZSeH/4ErYYqu0BfBzr+Q0m9WO57uTBomGnzNtsK3yLM13D64nPv2+ndMOJ+Vvf0S1ZdbZv0beSrBQ0TNrCbqkn56sd+sOzHcBmBwAxkVNWh+c6ucHEhNXCTDgsoqSPTUzqG/LP69yRU28TQ2tHoZJB1H+qm0GYAmdneKVYPUH07WQjAjifq5Ge4wuqER3vylf8dRWu0H7Z8/m91Ugmmj0lI8G+OZmxc9ltotzuNkqwsCyFgWTzn?=
+ =?us-ascii?Q?T4ec9gqzwgXQoSzcw7SYu01p/ZMvIW1FIOgzO55doVv5FuqUs7ZuTgyG3+e4M3JjvstGAA1LKlwmyNUilYGu/k5D+zriwL6ixifb8MJpc/DJxLpxIIfknZWphHekECd9qvzxSUhLlwCTc9A4VUTc58xU7ZIKAYMdtVKstyuOuvl0Q0HA36Dtq21jbQ+bfyKZXpOCQvn+HDIbLdHsim9bTrSCLcfbsa0A4PWSeIubhENYJeUEIdH34D8oqSIRZwVOTTn5VSITtxG6awcMZ6Vuz+1grM4hMJBpDtNH/Rz+fwrmlIMS423W2ipi45UEC1KIJb/gnGUF3WgNveoXqk+Ek+DlOwxLITc+wGf+UdGW88q4+OxPPtJj2g5bmLV2CDwCKUJYHk+qnDZxYkJlajWSQRYJz6SmTFG7YsCnK+Qa2L2LnOM5ScD1xFPhD2CdtoajiWpaDFtEvNDJ6vgP1M4UbeKTXm+nAAtX+K2rFCDCbJ2wCw9TjP2KXolF80UTjmXCd8JWLboAYE9CRZ2z8hdEgytfiMhx4yUA8nfQpfP5A+fhg8wC/8e6za0hVAY0UatR3eOKI0IpJfKCrmGOKd0r/XcvkMSPQHkcxeq/sj/P8BAp9es/EHX90IyQARAJEAoHqWSsBkFiXkf4j2KAYPh5e9H94UoAknRKh2H0gshv2dVDZc0O+zNkVtIczsWflql+xxT4Kl5FmGWvdtrpe0CftDFzyGie6waBJF/9pgOBY47EGEqvWo4QVzn2ge4QvmTkvceVCoDlNlpp2xXD/cN+o=3D?=
+Content-Type: multipart/mixed;boundary=---------------------004b026089c77cc24041123d50900db6
+Content-Transfer-Encoding: quoted-printable
+Mime-Version: 1.0
+X-Ms-Exchange-Antispam-Externalhop-Messagedata-Chunkcount: 1
+X-Ms-Exchange-Antispam-Externalhop-Messagedata-0: rOUGIlbL4zOYGb7W3sJf3d9XnZsw+rkebfc02/oOQUAg92QzmXDIi0e5Lqf9aCu5CUnmWGAOHT/TfiMxR9B6GSNK5/hpRZAWiNzXUIfRCxSZIuXWuR8yH23u7MqPpqCfBS0xemCkY3Ds518Cn16KyQPQk68JYmGvZAvMyXMj2fR3hHm9TwWOF+11qVtiAqSyeVPy9RjBLKeDQ0zkX7R7H7tNVQdxG5eSFM0VmSdHv2M3MxNcsJEtS098CvlKcBVafriWv6qbTBAPBfUog10PWH8g9MpViPWQqPi7iWAMpMpOvpY6ZIDZt9xYP9UB3CG2L/EF/fD7upPf2OJVxCTZqG9GNj0+mWGzPXhz1NHabm9qMXpZl4onjUgwZy/39O07xz2lvisCNQ30rEkK36aV8Dc1EXze+xZUbUC5e5ChPP+GB2HlEu9OSHGs/sOX0kNoi/tnk1hwZlMPe1lX5cSazqTXp6y/Sv6iHk5B8P60G3LLWbwys8xrpHuGRrhj4G6c4lEBEmoeA70VgDzeqHlMnRpghQaNXG86s0QzLjw8VDDJXvztoywYYNteiPBffXYFoDaxeU7EWZSI9lVIep7Rw+1AkKjhlgjoJeca7ISdItSuAqRODTrdQPGxrVelmt9/hTrSvimGJ4k5gVZDQ6dNgQ==
+X-Originatororg: mitre.org
+X-Ms-Exchange-Crosstenant-Authas: Internal
+X-Ms-Exchange-Crosstenant-Authsource: BLAPR09MB6788.namprd09.prod.outlook.com
+X-Ms-Exchange-Crosstenant-Network-Message-Id: 66d75f2d-1ff4-4561-fe3a-08de64e19f6b
+X-Ms-Exchange-Crosstenant-Originalarrivaltime: 05 Feb 2026 18:08:53.8179 (UTC)
+X-Ms-Exchange-Crosstenant-Fromentityheader: Hosted
+X-Ms-Exchange-Crosstenant-Id: c620dc48-1d50-4952-8b39-df4d54d74d82
+X-Ms-Exchange-Transport-Crosstenantheadersstamped: BLAPR09MB7361
+X-Proofpoint-Virus-Version: vendor=nai engine=6800 definitions=11692 signatures=596818
+X-Pm-Spam: 0yezJI6cihyJeYR3pi42biOpJJvbmsCIeI1msjN3X3blJp7IjSlBITQ0iz0iOSMiwJPU
+ FQF9RUVkEUNUSUSO9owIjSCJLUIy6sMTLlIk9J1ZWp19ZbZmv7pjIlISBQiT0insOa1WhfV2ZmbtFI
+ 6ZSzmhIdFGjm91aWal5R1X3kmVbXB31wIzXjMwYA5MTiiwIbFWpz8FbHcfJ9kbWiWwZOJitslWY3My
+ B0yLS2DIMMEDww5iNCdsI1hImfWxaMB3yyB3X2biIAuOjwDAMMkz25kTOTO2kU1MTwTANNwCipFWbH
+ blRRfeHiW1ZZRWkn5Wa2Xv1VsZGijoIa5W0vxmZXYvQVsbXsGlda5WnsFWdWL1UNtLXsWxYIwiiz9F
+ cGctFowIjxjALMgD35QDNzM3kkxOD5zUNOwSiz9FcGctFJhX2i2UcOAjuwEDMDO0ckzND4TcOOET35
+ kTNCLwJN3X3jXRaa9F0w91bGazlluaG6yIZM4Cw4IjMzNygI0Nz5TgNMAT5sIDNnI1J9ubllW1YIoj
+ isxWYWLlZR1YXzmVcLBX13N3XXajRJ9aCsX0fINnyiQWaiO2Ig0OTjGNZMgj4hZWMGOmFQ2YzlmJZZ MTifX0=
+X-Pm-Origin: external
+X-Pm-Transfer-Encryption: TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits)
+X-Pm-Content-Encryption: on-delivery
+X-Pm-Spamscore: 0
+X-Pm-Spam-Action: inbox
+
+-----------------------004b026089c77cc24041123d50900db6
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;charset=utf-8
+
+Thank you for the following submission:
+
+CVE IDs of vulnerabilities to be published: CVE-2026-25251
+
+It will be reviewed by a CVE Assignment Team member. Changes, additions, o=
+r updates to your request can be sent to the CVE Team by replying directly=
+ to this email.
+Please do not change the subject line, which allows us to effectively trac=
+k your request.
+
+CVE E-mail signature
+
+{CMI: MCID15620204}
+-----------------------004b026089c77cc24041123d50900db6--
