@@ -1,0 +1,132 @@
+Return-Path: <prvs=3492c00881=cve-request@mitre.org>
+X-Original-To: fr0mthecloud@proton.me
+Delivered-To: fr0mTheCloud@proton.me
+Authentication-Results: mail.protonmail.ch; dkim=pass (Good 2048 bit
+    rsa-sha256 signature) header.d=mitre.org header.a=rsa-sha256
+Authentication-Results: mail.protonmail.ch; dmarc=pass (p=none dis=none)
+ header.from=mitre.org
+Authentication-Results: mail.protonmail.ch; spf=pass smtp.mailfrom=mitre.org
+Authentication-Results: mail.protonmail.ch; arc=none smtp.remote-ip=67.231.155.183
+Authentication-Results: mail.protonmail.ch; dkim=pass (2048-bit key) header.d=mitre.org
+ header.i=@mitre.org header.b="g+l9Dt4L"
+Received: from mx0f-00007b01.gpphosted.com (mx0f-00007b01.gpphosted.com [67.231.155.183])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits)) (No client
+ certificate requested) by mailinosl107.protonmail.ch (Postfix) with ESMTPS id
+ 4f3d2b41t4z3f for <fr0mthecloud@proton.me>; Sun,
+  1 Feb 2026 05:04:23 +0000 (UTC)
+Received: from pps.filterd (m0368554.ppops.net [127.0.0.1]) by
+ mx0f-00007b01.gpphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 6114qvTk001241 for
+ <fr0mthecloud@proton.me>; Sun, 1 Feb 2026 05:04:14 GMT
+Received: from smtpyrhmv1.mitre.org ([192.52.194.175]) by mx0f-00007b01.gpphosted.com
+ (PPS) with ESMTPS id 4c1ubv09h4-1 (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384
+ bits=256 verify=NOT) for <fr0mthecloud@proton.me>; Sun, 01 Feb 2026 05:04:14 +0000
+Received: from smtprhmv1.mitre.org (smtprhmv1.mitre.org [10.20.200.16]) (using TLSv1.2
+ with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits)) (No client certificate
+ requested) by smtpyrhmv1.mitre.org (Postfix) with ESMTPS id 1EA79413DC7 for
+ <fr0mthecloud@proton.me>; Sun,
+  1 Feb 2026 00:04:14 -0500 (EST)
+Received: from cvecmssrv2.mitre.org (cvecmssrv2.mitre.org [10.8.1.60]) (using TLSv1.2
+ with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits)) (No client certificate
+ requested) by smtprhmv1.mitre.org (Postfix) with ESMTPS id 0D79380D9AB; Sun,
+  1 Feb 2026 00:04:14 -0500 (EST)
+Received: by cvecmssrv2.mitre.org (Postfix, from userid 6025) id D11B9C3B288; Sun,
+  1 Feb 2026 00:04:13 -0500 (EST)
+Dkim-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mitre.org; h=date : from : to :
+ subject : cc : message-id; s=pps1; bh=Z9HdzVnkdq54Xm6HlI2mB4aYDpdsuxu6nwsHYTw6dWM=;
+ b=g+l9Dt4LrH0QqwhJ22idwK2iaSPW5/zgtjV1thsyXzqMv0mNbfOFz1oOODAIVwTFi6eU
+ 84yLUV0cRViTL+pUqn6JRQ0JJG1wsAcRb5woVt1yioA+ZU9qUB/2+bxFVMfeNGviSq2L
+ AYrHelUOTa0MOqMSyRHL48YtQrLey3ERLe/2Za9RFZpI7sZWjH3HR0Yhztw81ReXLCvJ
+ 2NaAa4lf22kQV3IKwthf1nbZiN94VNJzeu2BsawliqvOR7BZusKCw1i0HCztd829hKGe
+ nJfRRX5gzCDUD3nU4MS9h1f298B46Ense0WbBHV6rmY3SXxGPNWyLqdNAW7kmWJRs6qT 5Q==
+Date: Sun, 01 Feb 2026 00:04:13 -0500
+From: cve-request@mitre.org
+To: fr0mthecloud@proton.me
+Subject: Re: [scr1985899] Texas Instruments SN27xxx Series Battery Fuel Gauge IC - All
+ Versions
+Cc: cve-request@mitre.org
+Message-Id: <20260201050413.2OdlH%cve-request@mitre.org>
+User-Agent: s-nail v14.9.22
+X-Proofpoint-Virus-Version: vendor=nai engine=6800 definitions=11688 signatures=596818
+X-Pm-Spam: 0yezJI6cihyJeYR3pi42biOpJJvbmsCIeI1msjN3X3blJp7IjSlBITQ0iz0iOSMiwJPU
+ FQF9RUVkEUNUSUSO9owIjSCJLUIy654CMiNiwRlX2nnVYXl2ui8mZnOisJPUF6CIReJypnFWbVZu91
+ lYWijoIaNH0rNWY2XpZVfbmuHVdZRWffVHcjMyAAxNjiDkMLJCtslWYzXwN9tcll2RbbIC6h1mIWaz
+ wItcHwTILMYjw2ATMnL0BwiIipWFbb8FzfJHcHcvJI6YiwC4MMADy5gDOTO5kg2OD0TcONkjyiwyMW
+ bpFRlbHfHReZ1WikRWZWan51vX2sGVZIoji05WamZvxQvYXsXVbdlGsn5WaWdsFU1LWtXNLYxWsiwi
+ IFcz9FtcGwjoILAjxwgjNzM3AkwMDyjgMNQDwiwiMFcz9FtcGh2JXcU2iuAjODM2EAzODwDcMOATy0
+ IDODNyAJwLC33NXaRXj09Fa1bw9lzaGuGlaZIy6w4CMjM0IMwMjwDEMMYDy2UDNTMsMJ1Inul9bY1W
+ liojIWYsxZlLW1XRYcVmz1BXL3X3NRjaX9CJaf0XsyNnIWaiQI2OilTdOZVGkiRTODO2YgzNzzTAZN
+ EG4iUTZfX0=
+X-Pm-Origin: external
+X-Pm-Transfer-Encryption: TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits)
+X-Pm-Content-Encryption: on-delivery
+X-Pm-Spamscore: 0
+X-Pm-Spam-Action: inbox
+Mime-Version: 1.0
+Content-Type: multipart/mixed;boundary=---------------------82c8b4e0869ba871b4f06a94751246ea
+
+-----------------------82c8b4e0869ba871b4f06a94751246ea
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;charset=utf-8
+
+
+> [Suggested description]
+> The Texas Instruments SN27xxx series Battery Fuel Gauge IC has a
+> hardware-level security violation (this IC is, for example, integrated
+> into the Apple iPhone 14 and 15 Pro Max).
+> The One-Time Programmable (OTP) security fuses
+> designed to permanently disable manufacturing/debug interfaces remain
+> unprogrammed (unblown) in production hardware. This Unrestricted
+> Factory Mode state permits persistent JTAG/debug access,
+> I2C/SMBus bus master elevation, and the execution of undocumented
+> factory test commands via the Secure Processing Unit (SPU).
+> Exploitation allows the mounting of a reserved memory partition, masked
+> through manipulation of battery capacity reporting, and would operate on
+> the Always-On (AON) power domain, persisting across OS updates and
+> factory resets.
+>
+> ------------------------------------------
+>
+> [VulnerabilityType Other]
+> Unfused OTP security registers (hardware debug access)
+>
+> ------------------------------------------
+>
+> [Vendor of Product]
+> Texas Instruments
+>
+> ------------------------------------------
+>
+> [Affected Product Code Base]
+> Texas Instruments SN27xxx Series Battery Fuel Gauge IC - All Versions
+> Apple iPhone 14 Pro Max - All Versions
+> Apple iPhone 15 Pro Max - All Versions
+>
+> ------------------------------------------
+>
+> [Reference]
+> https://kb.cert.org/vince/comm/case/3086/
+>
+> ------------------------------------------
+>
+> [Has vendor confirmed or acknowledged the vulnerability?]
+> true
+>
+> ------------------------------------------
+>
+> [Discoverer]
+> Joseph Raymond Goydish II
+>
+> ------------------------------------------
+>
+> [Reference]
+> https://ti.com
+
+Use CVE-2026-25251.
+
+
+--
+CVE Assignment Team
+M/S M300, 202 Burlington Road, Bedford, MA 01730 USA
+[ A PGP key is available for encrypted communications at
+  https://cve.mitre.org/cve/request_id.html ]
+-----------------------82c8b4e0869ba871b4f06a94751246ea--
