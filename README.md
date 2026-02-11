@@ -1,6 +1,6 @@
 # CVE-2026-25251
 
-## TI SN27xxx shipped production iPhones with UNBLOWN DEBUG FUSES 
+## TI SN27xxx shipped production iPhones found with UNBLOWN DEBUG FUSES 
 **A16 (14 Pro Max) + A17 Pro (15 Pro Max) = Supply Chain Concern**
 
  **RISK:** Persistent JTAG/I2C hardware debug access survives all iOS updates, factory resets, Secure Enclave protections. Attackers mount 384KB hidden AON partitions for permanent foothold. VULNERABLE SINCE ~2022-2024. (iPhone 14 & 15 Pro Max confirmed; likely broader Apple ecosystem)
