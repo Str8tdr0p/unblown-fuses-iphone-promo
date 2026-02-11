@@ -1,0 +1,80 @@
+In-Reply-To: <BLAPR09MB6788F6D1105846908661117BE599A@BLAPR09MB6788.namprd09.prod.outlook.com>
+References: <BLAPR09MB6788F6D1105846908661117BE599A@BLAPR09MB6788.namprd09.prod.outlook.com>
+X-Pm-Origin: internal
+X-Pm-Content-Encryption: on-compose
+Subject: Re: Regarding service request 1988922
+To: CVE Request <CVE-Request@mitre.org>
+From: Intergalactic Auditor <fr0mTheCloud@proton.me>
+Date: Mon, 09 Feb 2026 18:08:34 +0000
+Mime-Version: 1.0
+Content-Type: multipart/mixed;boundary=---------------------cc747cf6900121dc932550281548e97a
+Message-Id: <ZspGGS9rPKt295doCs3EhcTmdYQi7nLpCjqGZL_mDetMo3L2xZrEeTwlDJF3Qk4YyxvOkOvfSHgSNhsF_sDpDaazLrtiVMeUy2bKYAMJobc=@proton.me>
+X-Pm-Scheduled-Sent-Original-Time: Mon, 09 Feb 2026 18:08:20 +0000
+X-Pm-Recipient-Authentication: CVE-Request%40mitre.org=none
+X-Pm-Recipient-Encryption: CVE-Request%40mitre.org=none
+
+-----------------------cc747cf6900121dc932550281548e97a
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;charset=utf-8
+
+Hi CVE Team,
+
+Confirming the GitHub Gist has been updated to include the affected/fixed =
+version information requested on 2/5:
+
+https://gist.github.com/0verdu/318f542528a0d0b4dd7cb698efd92efe
+
+Affected:
+- iPhone 14 Pro Max (all iOS versions)
+- iPhone 15 Pro Max (all iOS versions)
+- TI SN27xxx Series IC (all hardware revisions)
+
+Fix Status: Not Established (hardware design issue)
+
+Ready for publication.
+
+Thank you,
+Joseph Goydish II
+
+
+
+Sent with Proton Mail secure email.
+
+On Thursday, February 5th, 2026 at 2:46 PM, CVE Request <CVE-Request@mitre=
+.org> wrote:
+
+>
+>
+> Hello,
+>
+> Regarding your CVE service request, logged on 2026-02-05T13:08:34, we ha=
+ve the following question or update:
+>
+> The CVE Team needs a public reference URL that contains the minimum requ=
+ire information for the vulnerability covered by CVE-2026-25251. Please pr=
+ovide such reference. If you do not have one a quick way to create your ow=
+n reference is for you to post your entire form-submission information con=
+taining the minimum data requirements to https://gist.github.com as a publ=
+ic gist. You can use any other hosting resource (e.g., a blog or the http:=
+//seclists.org/fulldisclosure mailing-list archive or http://pastebin.com)=
+. This request is missing the proper affected/fixed version number. Please=
+ respond to this email when this information has been added to the public =
+disclosure URL.
+>
+>
+> Please do not hesitate to contact the CVE Team by replying to this email=
+ if you have any questions, or to provide more details.
+>
+> Please do not change the subject line, which allows us to effectively tr=
+ack your request.
+>
+> CVE Assignment Team
+>
+> M/S M300, 202 Burlington Road, Bedford, MA 01730 USA
+>
+> [A PGP key is available for encrypted communications at
+>
+> http://cve.mitre.org/cve/request_id.html]
+>
+> {CMI: MCID15620542}
+-----------------------cc747cf6900121dc932550281548e97a--
