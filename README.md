@@ -28,6 +28,20 @@ cd VINCE/cwe1191-iPhone14-package/
 python3 cwe1191_triage.py powerlog_*.PLSQL log_*.BGSQL      # → FUSES
 python3 bgsql_ghost_wake_analyzer.py log_*.BGSQL           # → 756 GHOST WAKES
 ```
+
+### LIVE EXPLOITATION (Feb 8, 2026 - iOS 26.2.1)
+
+**CISA KEV submitted 2026-02-11 (vulnerability@mail.cisa.dhs.gov) | BOD 22-01**
+
+iPhone 14 Pro Max (D74AP, build 23C71) LiveData.tracev3 capture during active exploitation:
+- 8x CoreSight register 0x2081 hits (OTP bits 4-6 = 0, fuses UNBLOWN)
+- Kernel debug events type 0xefd6 + KTRR/PAC bypass 0x3535
+- gateway.icloud.com:443 CloudKit C2 during debug sessions (11 connections)
+- SHA256: c335e48e733f7e80b3e4c3779f45a72439917492ac6293d87a4e044cf599216b
+
+[**Full Exploitation Package**](https://github.com/Str8tdr0p/unblown-fuses-iphone-promo/tree/main/LIVE-EXPLOITATION)
+
+
 ### Repository Structure 
 
 ```
@@ -48,3 +62,10 @@ unblown-fuses-iphone-promo/
 │       ├── log_*.BGSQL
 │       ├── cwe1191_triage.py      # → Register 0x2081 UNFUSED
 │       └── bgsql_ghost_wake_analyzer.py  # → 756 ghost wakes
+├── LIVE-EXPLOITATION/             
+│   ├── README.md                         # Verification guide
+│   ├── Report1_Hardware_Debug_CVE-2026-25251.txt
+│   ├── Report2_CloudKit_Exfil_CVE-2026-25252.txt
+│   ├── logdata_LiveData.tracev3          # Raw 3.1MB binary log (SHA256 verified)
+│   ├── tracev3_exploitation_analyzer.py  # → Report 1 (0x2081 detection)
+│   └── tracev3_network_analyzer.py       # → Report 2 (CloudKit C2)
